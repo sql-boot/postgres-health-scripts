@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/sql-boot/postgres-template.svg?branch=master)](https://travis-ci.org/sql-boot/postgres-template)
+[![Build Status](https://travis-ci.org/sql-boot/postgres-health-scripts.svg?branch=master)](https://travis-ci.org/sql-boot/postgres-health-scripts)
 
 Simple [sql-boot](https://github.com/CrocInc/sql-boot) template for PostgreSQL scripts.
 
