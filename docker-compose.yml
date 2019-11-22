@@ -1,0 +1,17 @@
+version: '3'
+services:
+
+  test-db-server:
+    image: mgramin/postgres-pro-demodb-small
+    ports:
+      - "5432:5432"
+
+  sql-boot:
+    build: . 
+    image: sql-boot-postgres
+    ports:
+      - "8007:8007"
+    volumes:
+      - ./sql:/sql-boot/sql
+      - ./application.yml:/sql-boot/application.yml
+

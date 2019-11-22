@@ -1,0 +1,20 @@
+---
+conf:
+
+  dialects:
+    - name: postgres
+      paginationQueryTemplate: >
+        {{ query }} offset {{ uri.pageSize()*(uri.pageNumber()-1) }} limit {{ uri.pageSize() }}
+
+  endpoints:
+    - name: demodb
+      confDir: /sql-boot/sql
+      properties:
+        jdbc_url: jdbc:postgresql://test-db-server:5432/demo
+        db_user: postgres
+        db_password: postgres
+        sql_dialect: postgres
+        jdbc_driver_class_name: org.postgresql.Driver
+
+server:
+     port: 8007

@@ -1,0 +1,60 @@
+{
+	"info": {
+		"_postman_id": "50faf622-e10f-457b-95b3-13110b646907",
+		"name": "postgres-test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Hello world",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "61f1974e-3cbf-474a-82ed-9baee2405a29",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test('Response has a valid Content-Type header', function() {",
+							"  pm.response.to.have.header('content-type');",
+							"  pm.expect(pm.response.headers.get('content-type')).to.include('application/json');",
+							"});",
+							"",
+							"",
+							"pm.test(\"Check count\",function () {",
+							"      pm.expect(pm.response.json().length).to.eql(100);",
+							"});",
+							"",
+							"pm.test(\"Check tables\",function () {",
+							"      pm.expect(pm.response.json()[0].value).to.eql(1);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8007/api/demodb/hello_world_sql_script",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8007",
+					"path": [
+						"api",
+						"demodb",
+						"hello_world_sql_script"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
