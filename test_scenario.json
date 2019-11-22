@@ -1,59 +1,386 @@
 {
 	"info": {
-		"_postman_id": "50faf622-e10f-457b-95b3-13110b646907",
-		"name": "postgres-test",
+		"_postman_id": "ff131a4e-ddfc-4294-ba1d-ce330f4d6d14",
+		"name": "postgres-scripts-test",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "Hello world",
-			"event": [
+			"name": "schema",
+			"item": [
 				{
-					"listen": "test",
-					"script": {
-						"id": "61f1974e-3cbf-474a-82ed-9baee2405a29",
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});",
-							"",
-							"pm.test('Response has a valid Content-Type header', function() {",
-							"  pm.response.to.have.header('content-type');",
-							"  pm.expect(pm.response.headers.get('content-type')).to.include('application/json');",
-							"});",
-							"",
-							"",
-							"pm.test(\"Check count\",function () {",
-							"      pm.expect(pm.response.json().length).to.eql(100);",
-							"});",
-							"",
-							"pm.test(\"Check tables\",function () {",
-							"      pm.expect(pm.response.json()[0].value).to.eql(1);",
-							"});",
-							""
-						],
-						"type": "text/javascript"
-					}
+					"name": "table",
+					"item": [
+						{
+							"name": "Get all tables",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "27382e71-4bad-40d6-8e85-371d3a25bf66",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test('Response has a valid Content-Type header', function() {",
+											"  pm.response.to.have.header('content-type');",
+											"  pm.expect(pm.response.headers.get('content-type')).to.include('application/json');",
+											"});",
+											"",
+											"",
+											"pm.test(\"Check count\",function () {",
+											"      pm.expect(pm.response.json().length).to.eql(78);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8007/api/demodb/table",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8007",
+									"path": [
+										"api",
+										"demodb",
+										"table"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get one table",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "64260e90-092b-469a-a482-4e43adfcbeef",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test('Response has a valid Content-Type header', function() {",
+											"  pm.response.to.have.header('content-type');",
+											"  pm.expect(pm.response.headers.get('content-type')).to.include('application/json');",
+											"});",
+											"",
+											"",
+											"pm.test(\"Check count\",function () {",
+											"      pm.expect(pm.response.json().length).to.eql(1);",
+											"});",
+											"",
+											"pm.test(\"Check tables\",function () {",
+											"      pm.expect(pm.response.json()[0].table_name).to.eql('flights');",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8007/api/demodb/table/bookings.flights",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8007",
+									"path": [
+										"api",
+										"demodb",
+										"table",
+										"bookings.flights"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get top 3 tables by size in Database",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "24c11ea4-846f-473f-a049-aff58c95e6d7",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test('Response has a valid Content-Type header', function() {",
+											"  pm.response.to.have.header('content-type');",
+											"  pm.expect(pm.response.headers.get('content-type')).to.include('application/json');",
+											"});",
+											"",
+											"",
+											"pm.test(\"Check count\",function () {",
+											"      pm.expect(pm.response.json().length).to.eql(3);",
+											"});",
+											"",
+											"pm.test(\"Check tables\",function () {",
+											"      pm.expect(pm.response.json()[0].table_name).to.eql('ticket_flights');",
+											"      pm.expect(pm.response.json()[1].table_name).to.eql('boarding_passes');",
+											"      pm.expect(pm.response.json()[2].table_name).to.eql('tickets');",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8007/api/demodb/table?page=1,3&orderby=total_bytes-desc",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8007",
+									"path": [
+										"api",
+										"demodb",
+										"table"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1,3"
+										},
+										{
+											"key": "orderby",
+											"value": "total_bytes-desc"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get top 3 tables with min rows in Schema",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "b10aa30d-db02-4c34-8fcb-b6b1be7dc711",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test('Response has a valid Content-Type header', function() {",
+											"  pm.response.to.have.header('content-type');",
+											"  pm.expect(pm.response.headers.get('content-type')).to.include('application/json');",
+											"});",
+											"",
+											"",
+											"pm.test(\"Check count\",function () {",
+											"      pm.expect(pm.response.json().length).to.eql(3);",
+											"});",
+											"",
+											"pm.test(\"Check tables\",function () {",
+											"      pm.expect(pm.response.json()[0].table_name).to.eql('aircrafts');",
+											"      pm.expect(pm.response.json()[0].row_estimate).to.eql(9);",
+											"      ",
+											"      pm.expect(pm.response.json()[1].table_name).to.eql('airports');",
+											"      pm.expect(pm.response.json()[1].row_estimate).to.eql(104);",
+											"      ",
+											"      pm.expect(pm.response.json()[2].table_name).to.eql('seats');",
+											"      pm.expect(pm.response.json()[2].row_estimate).to.eql(1339);",
+											"",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8007/api/demodb/table/bookings?page=1,3&orderby=row_estimate-asc",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8007",
+									"path": [
+										"api",
+										"demodb",
+										"table",
+										"bookings"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1,3"
+										},
+										{
+											"key": "orderby",
+											"value": "row_estimate-asc"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
 				}
 			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8007/api/demodb/hello_world_sql_script",
-					"protocol": "http",
-					"host": [
-						"localhost"
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "instance",
+			"item": [
+				{
+					"name": "database",
+					"item": [
+						{
+							"name": "process",
+							"item": [
+								{
+									"name": "Get all processes",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "b8d3c719-c197-4a07-ac37-87110e148b2d",
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													"",
+													"pm.test('Response has a valid Content-Type header', function() {",
+													"  pm.response.to.have.header('content-type');",
+													"  pm.expect(pm.response.headers.get('content-type')).to.include('application/json');",
+													"});",
+													"",
+													"",
+													"",
+													"pm.test(\"Exist Checkpointer process\",function () {",
+													"  pm.expect(pm.response.json().filter(e => e.backend_type === 'checkpointer').length > 0).to.eql(true);",
+													"});",
+													"",
+													"pm.test(\"Exist Autovacuum launcher process\",function () {",
+													"  pm.expect(pm.response.json().filter(e => e.backend_type === 'autovacuum launcher').length > 0).to.eql(true);",
+													"});",
+													"",
+													"pm.test(\"Exist Background writer process\",function () {",
+													"  pm.expect(pm.response.json().filter(e => e.backend_type === 'background writer').length > 0).to.eql(true);",
+													"});",
+													"",
+													"pm.test(\"Exist Walwriter process\",function () {",
+													"  pm.expect(pm.response.json().filter(e => e.backend_type === 'walwriter').length > 0).to.eql(true);",
+													"});",
+													"",
+													"",
+													"pm.test(\"Not exist Foo process\",function () {",
+													"  pm.expect(pm.response.json().filter(e => e.backend_type === 'foo').length > 0).to.eql(false);",
+													"});",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:8007/api/demodb/pg_stat_activity",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8007",
+											"path": [
+												"api",
+												"demodb",
+												"pg_stat_activity"
+											]
+										}
+									},
+									"response": []
+								}
+							],
+							"protocolProfileBehavior": {},
+							"_postman_isSubFolder": true
+						},
+						{
+							"name": "Get all databases",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "05141719-58de-43fa-9fee-c6e90be8bca7",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test('Response has a valid Content-Type header', function() {",
+											"  pm.response.to.have.header('content-type');",
+											"  pm.expect(pm.response.headers.get('content-type')).to.include('application/json');",
+											"});",
+											"",
+											"",
+											"pm.test(\"Check <<postgres>> database\",function () {",
+											"      pm.expect(pm.response.json().filter(e => e.datname === 'postgres').length > 0).to.eql(true);",
+											"      ",
+											"});",
+											"",
+											"pm.test(\"Check <<demo>> database\",function () {",
+											"      pm.expect(pm.response.json().filter(e => e.datname === 'demo').length > 0).to.eql(true);",
+											"      ",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8007/api/demodb/database",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8007",
+									"path": [
+										"api",
+										"demodb",
+										"database"
+									]
+								}
+							},
+							"response": []
+						}
 					],
-					"port": "8007",
-					"path": [
-						"api",
-						"demodb",
-						"hello_world_sql_script"
-					]
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
 				}
-			},
-			"response": []
+			],
+			"protocolProfileBehavior": {}
 		}
 	],
 	"protocolProfileBehavior": {}
