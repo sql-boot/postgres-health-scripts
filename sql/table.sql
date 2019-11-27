@@ -9,21 +9,21 @@
   "icon_class": "blue white--text"
 }
 */
-select schema_name      /* { "label": "Schema", "description": "" } */
-     , table_name       /* { "label": "Table", "description": "" } */
-     , columns          /* { "label": "Columns", "sortable": false } */
-     , indexes          /* { "label": "Indexes", "sortable": false } */
-     , row_estimate     /* { "label": "Rows", "description": "Estimate rows count" } */
-     , total_bytes      /* { "label": "Total size", "format": "size", "description": "Total size, include index and TOAST" } */
-     , total_percent    /* { "label": "Total size, %", "description": "Total size %, include index and TOAST" } */
-     , table_bytes      /* { "label": "Table size", "format": "size", "visible": false, "description": "" } */
-     , table_percent    /* { "label": "Table size, %", "visible": false, "description": "" } */
-     , index_bytes      /* { "label": "Index size", "format": "size", "visible": false, "description": "" } */
-     , index_percent    /* { "label": "Index size, %", "visible": false, "description": "" } */
-     , toast_bytes      /* { "label": "TOAST size", "format": "size", "visible": false, "description": "" } */
-     , toast_percent    /* { "label": "TOAST size, %", "visible": false, "description": "" } */
-     , heap_blks_read	  /* { "label": "Blocks read", "description": "Number of disk blocks read from this table" } */
-     , heap_blks_hit	  /* { "label": "Buffer hits", "description": "Number of buffer hits in this table" } */
+select schema_name      /* { "text": "Schema", "description": "" } */
+     , table_name       /* { "text": "Table", "description": "" } */
+     , columns          /* { "text": "Columns", "sortable": false } */
+     , indexes          /* { "text": "Indexes", "sortable": false } */
+     , row_estimate     /* { "text": "Rows", "description": "Estimate rows count" } */
+     , total_bytes      /* { "text": "Total size", "format": "size", "description": "Total size, include index and TOAST" } */
+     , total_percent    /* { "text": "Total size, %", "description": "Total size %, include index and TOAST" } */
+     , table_bytes      /* { "text": "Table size", "format": "size", "visible": false, "description": "" } */
+     , table_percent    /* { "text": "Table size, %", "visible": false, "description": "" } */
+     , index_bytes      /* { "text": "Index size", "format": "size", "visible": false, "description": "" } */
+     , index_percent    /* { "text": "Index size, %", "visible": false, "description": "" } */
+     , toast_bytes      /* { "text": "TOAST size", "format": "size", "visible": false, "description": "" } */
+     , toast_percent    /* { "text": "TOAST size, %", "visible": false, "description": "" } */
+     , heap_blks_read	  /* { "text": "Blocks read", "description": "Number of disk blocks read from this table" } */
+     , heap_blks_hit	  /* { "text": "Buffer hits", "description": "Number of buffer hits in this table" } */
   from (select schema_name
              , table_name
              , case when indexes_count<>0 then json_build_object('label', indexes_count, 'link', 'index/'||schema_name||'.'||table_name) end as indexes

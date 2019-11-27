@@ -4,18 +4,18 @@
   "description": "The list of databases",
   "tags": "ui"
 }*/
-select datname         /* { "label": "Database" } */
-     , size            /* { "label": "Size", "format": "size" } */
-     , size_pct        /* { "label": "Size, %" } */
-     , stats_age       /* { "label": "Stats Age" } */
-     , cache_hit_ratio /* { "label": "Cache effective, %" } */
-     , commited        /* { "label": "Committed, %" } */
-     , conflicts       /* { "label": "Conflicts", "description": "Number of queries canceled due to conflicts with recovery in this database" } */
-     , deadlocks       /* { "label": "Deadlocks", "description": "Number of deadlocks detected in this database" } */
-     , temp_files      /* { "label": "Temporary files", "description": "Number of temporary files created by queries in this database" } */
+select datname         /* { "text": "Database" } */
+     , size            /* { "text": "Size", "format": "size" } */
+     , size_pct        /* { "text": "Size, %" } */
+     , stats_age       /* { "text": "Stats Age" } */
+     , cache_hit_ratio /* { "text": "Cache effective, %" } */
+     , commited        /* { "text": "Committed, %" } */
+     , conflicts       /* { "text": "Conflicts", "description": "Number of queries canceled due to conflicts with recovery in this database" } */
+     , deadlocks       /* { "text": "Deadlocks", "description": "Number of deadlocks detected in this database" } */
+     , temp_files      /* { "text": "Temporary files", "description": "Number of temporary files created by queries in this database" } */
 	 , case
          when current_database() = datname then json_build_object('label', schema_count, 'link', 'schema')
-       end as tables /* { "label": "Schemas", "sortable": false, "description": "Schemas" } */
+       end as tables /* { "text": "Schemas", "sortable": false, "description": "Schemas" } */
   from (select d.datname
              , case
                  when has_database_privilege(d.datname, 'connect') then pg_database_size(d.datname)
