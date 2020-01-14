@@ -22,8 +22,8 @@ select schema_name      /* { "text": "Schema", "description": "" } */
      , index_percent    /* { "text": "Index size, %", "visible": false, "description": "" } */
      , toast_bytes      /* { "text": "TOAST size", "format": "size", "visible": false, "description": "" } */
      , toast_percent    /* { "text": "TOAST size, %", "visible": false, "description": "" } */
-     , heap_blks_read	  /* { "text": "Blocks read", "description": "Number of disk blocks read from this table" } */
-     , heap_blks_hit	  /* { "text": "Buffer hits", "description": "Number of buffer hits in this table" } */
+     , heap_blks_read	/* { "text": "Blocks read", "description": "Number of disk blocks read from this table" } */
+     , heap_blks_hit	/* { "text": "Buffer hits", "description": "Number of buffer hits in this table" } */
   from (select schema_name
              , table_name
              , case when indexes_count<>0 then json_build_object('label', indexes_count, 'link', 'index/'||schema_name||'.'||table_name) end as indexes
