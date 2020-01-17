@@ -4,15 +4,15 @@
   "description": "Get information about TimescaleDB chunks",
   "tags": "ui"
 }*/
-select schema_name /* { "text": "Schema", "description": "Schema name of the hypertable." } */
-     , table_name  /* { "text": "Table", "description": "Table name of the hypertable." } */
-     , chunk_table_schema_name
-     , chunk_table_name
-     , total_bytes /* { "text": "Total size", "format": "size", "description": "Total disk space used by the specified table, including all indexes and TOAST data" } */
-     , index_bytes /* { "text": "Indexes size", "format": "size", "description": "Disk space used by indexes" } */
-     , toast_bytes /* { "text": "Toast size", "format": "size", "description": "Disk space of toast tables" } */
-     , range_start /* { "text": "Range start", "type": "timestamptz", "description": "Range start" } */
-     , range_end   /* { "text": "Range end", "type": "timestamptz", "description": "Range end" } */
+select schema_name             /* { "text": "Schema", "description": "Schema name of the hypertable." } */
+     , table_name              /* { "text": "Table", "description": "Table name of the hypertable." } */
+     , chunk_table_schema_name /* { "text": "Chunk schema", "description": "Schema name of the current chunk." } */
+     , chunk_table_name        /* { "text": "Chunk table", "description": "Table name of the current chunk." } */
+     , total_bytes             /* { "text": "Total size", "format": "size", "description": "Total disk space used by the specified table, including all indexes and TOAST data" } */
+     , index_bytes             /* { "text": "Indexes size", "format": "size", "description": "Disk space used by indexes" } */
+     , toast_bytes             /* { "text": "Toast size", "format": "size", "description": "Disk space of toast tables" } */
+     , range_start             /* { "text": "Range start", "type": "timestamptz", "description": "Range start" } */
+     , range_end               /* { "text": "Range end", "type": "timestamptz", "description": "Range end" } */
   from (select h.schema_name
              , h.table_name
              , c.schema_name as chunk_table_schema_name
