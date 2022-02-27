@@ -6,11 +6,11 @@ Simple [sql-boot](https://github.com/CrocInc/sql-boot) template for PostgreSQL s
 
 1. Clone this repo (or click "Use this template" and clone new repo):
 ```
-git clone https://github.com/sql-boot/postgres-template.git
-cd postgres-template
+git clone https://github.com/sql-boot/postgres-health-scripts.git
+cd postgres-health-scripts
 ```
 
-2. Put your SQL scripts to `sql` folder
+2. Add or edit SQL scripts in `sql` folder (if necessary)
 
 3. Edit properties in application.yml for your database(s)
 
@@ -29,7 +29,7 @@ docker run -v $PWD/sql:/sql-boot/sql \
 ```
 
 
-## Run against demo database
+6. Or run against demo database:
 ```
 docker-compose up -d
 ```
