@@ -29,7 +29,19 @@ docker run -v $PWD/sql:/sql-boot/sql \
 ```
 
 
-6. Or run against demo database:
+
+## How to run Demo
+
+1. Clone this repo:
+```
+git clone https://github.com/sql-boot/postgres-health-scripts.git
+cd postgres-health-scripts
+```
+
+2. Run against demo database:
 ```
 docker-compose up -d
 ```
+
+3. Go to the main page `http://localhost:8007/index.html#/` in your web browser.
+Or directly show db tables `http://localhost:8007/index.html#/demodb/table` or database processes `http://localhost:8007/index.html#/demodb/pg_stat_activity` or somthing else.
